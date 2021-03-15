@@ -33,9 +33,9 @@ This sample code is made available under a modified MIT license. See the LICENSE
 - [Instructions](#instructions)
   - [Getting started](#getting-started)
   - [Use Cloud9 environment to maintain your application](#use-cloud9-environment-to-maintain-your-application)
-  - [Implementing CI/CD pipeline for the Books microservice](#implementing-ci/cd-pipeline-for-the-books-microservice)
+  - [Implementing CI/CD pipeline for the Books microservice](#implementing-cicd-pipeline-for-the-books-microservice)
   - [Automate unit test for ListBooks lambda function](#automate-unit-test-for-listbooks-lambda-function)
-  - [Some challenges if you have time...](#some-challenges-if-you-have-time...)
+  - [Some challenges if you have time...](#some-challenges-if-you-have-time)
   - [Cleaning up](#cleaning-up)
 - [Known limitations](#known-limitations)
 
