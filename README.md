@@ -107,19 +107,19 @@ EU (Frankfurt) |	eu-central-1
 #### Create the front-end and lambda functions not related to Books microservice
 
 1. In CloudFormation, choose **Create Stack** with New resources 
-   1. Under **Specify template**, select **Upload a template file** and look for DemoBookstoreMainTemplate.yml.  Select **Next**
-   2. Name the stack (for example, DemoBookStoreStack)
-   3. Set parameter ProjectName = demobookstore (this is the default)
-   4. In the review page, check the “**I acknowledge…**” check box, and create the stack
+   - Under **Specify template**, select **Upload a template file** and look for DemoBookstoreMainTemplate.yml.  Select **Next**
+   - Name the stack (for example, DemoBookStoreStack)
+   - Set parameter ProjectName = demobookstore (this is the default)
+   - In the review page, check the “**I acknowledge…**” check box, and create the stack
 2. Once the CloudFormation deployment is complete, check the status of the build in the [CodePipeline](https://console.aws.amazon.com/codesuite/codepipeline/pipelines) console and ensure it has succeeded
 
 #### Create the Books microservice
 
 1. In CloudFormation, choose **Create Stack** with New resources 
-   1. Under **Specify template**, select **Upload a template file** and look for DemoBookstoreBooksServiceTemplate.yml.  Select **Next**.
-   2. Name the stack (for example, DemoBooksServiceStack).
-   3. Set parameter ProjectName to the same value you choose previously. This guide assumes you choose the default value on both (demobookstore).
-   4. Create the stack.
+   - Under **Specify template**, select **Upload a template file** and look for DemoBookstoreBooksServiceTemplate.yml.  Select **Next**.
+   - Name the stack (for example, DemoBooksServiceStack).
+   - Set parameter ProjectName to the same value you choose previously. This guide assumes you choose the default value on both (demobookstore).
+   - Create the stack.
 
 #### Test your application
 
