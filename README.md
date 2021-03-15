@@ -28,7 +28,18 @@ This sample code is made available under a modified MIT license. See the LICENSE
 
 ## Outline
 
-[TOC]
+- [Overview](#overview)
+- [Architecture](#architecture)
+- [Instructions](#instructions)
+  - [Getting started](#getting-started)
+  - [Use Cloud9 environment to maintain your application](#use-cloud9-environment-to-maintain-your-application)
+  - [Implementing CI/CD pipeline for the Books microservice](#implementing-ci/cd-pipeline-for-the-books-microservice)
+  - [Automate unit test for ListBooks lambda function](#automate-unit-test-for-listbooks-lambda-function)
+  - [Some challenges if you have time...](#some-challenges-if-you-have-time...)
+  - [Cleaning up](#cleaning-up)
+- [Known limitations](#known-limitations)
+
+&nbsp;
 
 ## Overview
 
@@ -66,7 +77,7 @@ Watch the recorded talk and demo of the original application [here](https://yout
 
 The solution architecture is the same as the original.  The diagram below shows the scope of our Books microservice.
 
-![image-20210315181804873](readmeImages/ArchDiagram.png)
+![image-20210315181804873](C:\Users\arnardi\AppData\Roaming\Typora\typora-user-images\image-20210315181804873.png)
 
 &nbsp;
 
@@ -123,7 +134,7 @@ EU (Frankfurt) |	eu-central-1
 
 
 
-### Use Cloud9 environment to maintain you application
+### Use Cloud9 environment to maintain your application
 
 #### Create an environment (IDE) for Cloud9
 
@@ -170,7 +181,9 @@ EU (Frankfurt) |	eu-central-1
 
      - Check your code is at CodeCommit repository
 
-#### Change code on front-end (demobookstore-WebAssets) and check pipeline running
+#### Change code on front-end
+
+Make a change in demobookstore-WebAssets and check if the pipeline running.
 
 1. Using Cloud9:
    - Make some code change. For example, change some fixed text, as in  src/modules/signup/Home.tsx, under renderLanding, you can change the heading from “Bookstore Demo” to “Bookstore FANTASTIC Demo”
@@ -182,10 +195,11 @@ EU (Frankfurt) |	eu-central-1
 
 ### Implementing CI/CD pipeline for the Books microservice
 
-#### In Cloud9, upload buildspec.yml and DemoBookstoreBooksServiceUpdateTemplate.yml files, to folder demobookstore-BooksService
+#### Add build and service update YAML files
 
-1. buildspec.yml has building instructions. It also has testing instructions which will be used to run the automated tests. They are commented at this point, and will be used later
-2. DemoBookstoreBooksServiceUpdateTemplate.yml is an updated version of DemoBookstoreBooksServiceTemplate.yml, to be used in the deployment stage of the pipeline. The definitions of ListBooks and GetBook functions were changed so they are modified on every pipeline execution (CodeUri property), to allow CloudFormation to detect changes update the stack 
+1. In Cloud9, upload buildspec.yml and DemoBookstoreBooksServiceUpdateTemplate.yml files, to folder demobookstore-BooksService
+   - buildspec.yml has building instructions. It also has testing instructions which will be used to run the automated tests. They are commented at this point, and will be used later
+   - DemoBookstoreBooksServiceUpdateTemplate.yml is an updated version of DemoBookstoreBooksServiceTemplate.yml, to be used in the deployment stage of the pipeline. The definitions of ListBooks and GetBook functions were changed so they are modified on every pipeline execution (CodeUri property), to allow CloudFormation to detect changes update the stack 
 
 #### Create a S3 bucket for build pipeline
 
@@ -198,16 +212,17 @@ EU (Frankfurt) |	eu-central-1
 1. For simplicity, under **Attach permissions policies**, select AdministratorAccess
 2. Role name = demobookstore-CloudFormation-role
 
-#### Create a new pipeline (demobookstore-BooksService-Pipeline, for example)
+#### Create a new pipeline for automating Books microservice build and deploy
 
-1. Create the Commit stage as:
+1. Choose a name for your pipeline, as demobookstore-BooksService-Pipeline, for example
+2. Create the Commit stage as:
    -  Action name = Source (or other you’d prefer)
    - Action provider = AWS CodeCommit
    - Repository name = demobookstore-BooksService
    - Branch name = main (or master, depending on which one is available)
    - Output artifacts = SourceArtifacts (or other of your choice)
    - Leave the other options as they are
-2. Create the Build stage as:
+3. Create the Build stage as:
    - Action name = Build (or other you’d prefer)
    - Action provider = AWS CodeBuild
    - Input artifacts = <the same you choose in Commit -> Output artifacts>
@@ -230,7 +245,7 @@ EU (Frankfurt) |	eu-central-1
      - Leave all other fields as they are and hit “Continue to CodePipeline”, to go back to CodePipeline creation
      - In IAM, attach policy “AdministratorAccess” to role demobookstore-BooksService-BuildProject-service-role
    - Output artifacts = BuildArtifacts  (or other of your choice)
-3. Create the Deploy stage with two action groups:
+4. Create the Deploy stage with two action groups:
    - The first one to create a change set with changes
      - Action name = GenerateChangeSet
      - Action provider = AWS CloudFormation
@@ -252,7 +267,7 @@ EU (Frankfurt) |	eu-central-1
      - Stack name = DemoBooksServiceStack (or another name you’ve chosen)
      - Change set name = pipeline-changeset
      - Leave all other fields as they are hit “Done”
-4. Test your microservice in Cloud9
+5. Test your microservice in Cloud9
    - Make a change in ListBooks function, including something in the log, as console.log(“I’m in ListBooks”)
    - Save, commit and push
    - Check if the pipeline run (all steps green)
@@ -260,7 +275,9 @@ EU (Frankfurt) |	eu-central-1
    - Refresh the web application and navigate to the home page (log in if you’re not). ListBooks is called to fill the items in “Cookbooks” category on home page
    - In your lambda function, under Monitor, click the CloudWatch link and check if your message (“I’m in ListBooks”) is in the log. **You’ve just instrumented your lambda function!**
 
-#### Automate unit test for ListBooks lambda function
+
+
+### Automate unit test for ListBooks lambda function
 
 1. Enable build to run unit tests
    - In buildspec.yml, uncomment commands `- npm run test` and `- rm -rf ./__tests__`
