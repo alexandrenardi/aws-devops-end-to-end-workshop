@@ -66,7 +66,7 @@ Watch the recorded talk and demo of the original application [here](https://yout
 
 The solution architecture is the same as the original.  The diagram below shows the scope of our Books microservice.
 
-![image-20210315181804873](C:\Users\arnardi\AppData\Roaming\Typora\typora-user-images\image-20210315181804873.png)
+![image-20210315181804873](readmeImages/ArchDiagram.png)
 
 &nbsp;
 
