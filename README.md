@@ -193,6 +193,7 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
 1. In Cloud9, upload buildspec.yml and DemoBookstoreBooksServiceUpdateTemplate.yml files, to folder demobookstore-BooksService
    - buildspec.yml has building instructions. It also has testing instructions which will be used to run the automated tests. They are commented at this point, and will be used later
    - DemoBookstoreBooksServiceUpdateTemplate.yml is an updated version of DemoBookstoreBooksServiceTemplate.yml, to be used in the deployment stage of the pipeline. The definitions of ListBooks and GetBook functions were changed so they are modified on every pipeline execution (CodeUri property), to allow CloudFormation to detect changes update the stack 
+2. Commit and push
 
 #### Create a S3 bucket for build pipeline
 
@@ -208,17 +209,15 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
 #### Create a new pipeline for automating Books microservice build and deploy
 
 1. Choose a name for your pipeline, as demobookstore-BooksService-Pipeline, for example. Leave all other options as default
-2. Create the Commit stage as:
-   -  Action name = Source (or other you’d prefer)
-   - Action provider = AWS CodeCommit
+2. Create the Source stage as:
+   - Source provider = AWS CodeCommit
    - Repository name = demobookstore-BooksService
    - Branch name = main (or master, depending on which one is available)
-   - Output artifacts = SourceArtifacts (or other of your choice)
+   - * Output artifacts = SourceArtifacts (or other of your choice)
    - Leave the other options as they are
 3. Create the Build stage as:
-   - Action name = Build (or other you’d prefer)
-   - Action provider = AWS CodeBuild
-   - Input artifacts = <the same you choose in Commit -> Output artifacts>
+   - Build provider = AWS CodeBuild
+   - * Input artifacts = <the same you choose in Commit -> Output artifacts>
    - Click on Create Project button to be redirected to create a build project
      - Project name = demobookstore-BooksService-BuildProject
      - Operating system = Amazon Linux 2
@@ -234,24 +233,25 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
      - Logs
        - Check “S3 logs – optional” check box
        - Bucket = demobookstore-books-service-pipeline-bucket-< YYYYMMDDHHMM >
-       - Check the “Allow AWS CodeBuild to modify…” check box
+       - * Check the “Allow AWS CodeBuild to modify…” check box
      - Leave all other fields as they are and hit “Continue to CodePipeline”, to go back to CodePipeline creation
      - In IAM, attach policy “AdministratorAccess” to role demobookstore-BooksService-BuildProject-service-role
-   - Output artifacts = BuildArtifacts  (or other of your choice)
+   - * Output artifacts = BuildArtifacts  (or other of your choice)
 4. Create the Deploy stage with two action groups:
    - The first one to create a change set with changes
-     - Action name = GenerateChangeSet
-     - Action provider = AWS CloudFormation
-     - Input artifacts = <the same you choose in Build -> Output artifacts>
+     - * Action name = GenerateChangeSet
+     - Deploy provider = AWS CloudFormation
+     - * Input artifacts = <the same you choose in Build -> Output artifacts>
      - Action mode = Create or replace a change set
      - Stack name = DemoBooksServiceStack (or another name you’ve chosen)
      - Change set name = pipeline-changeset
-     - Template -> Artifact name = <the same you choose in Build -> Output artifacts>
+     - Template -> Artifact name = BuildArtifact
      - Template -> File name = template-export.yml
      - Capabilities: select CAPABILITY_NAMED_IAM and CAPABILITY_AUTO_EXPAND
      - Role name: demobookstore-CloudFormation-role
      - Advanced -> Parameter overrides = {"AppId":"demobookstore-BooksService", "ProjectName":"demobookstore"}
-     - Output artifacts = OutputArtifacts (or other of your choice)
+     - * Output artifacts = OutputArtifacts (or other of your choice)
+     - Create the pipeline and check if it runs and all steps are green after a while. Our next step will be to add another action to Deploy stage
    - The second action group executes the change set:
      - Action name = ExecuteChangeSet
      - Action provider = AWS CloudFormation
