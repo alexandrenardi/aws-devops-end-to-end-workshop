@@ -134,6 +134,7 @@ EU (Frankfurt) |	eu-central-1
 
 &nbsp;
 
+
 ***NOTE**: Up to now, you have exactly the same results you would if you have run the original sample, but creating two stacks. Now your application is running, consider you have two developers in charge of maintaining the application: one for the Books microservice; and the other for the front-end and the other microservices. You also have a Development Lead responsible for guarantee the developers have the same IDE, avoiding issues with packages' versions, as Python, for example. The next sessions will walk you through some of the tasks and challenges they'll face!*
 
 
@@ -142,16 +143,16 @@ EU (Frankfurt) |	eu-central-1
 
 #### Create an environment (IDE) for Cloud9
 
-1. Create another stack from C9-env-formation-template-with-bootstrap.yaml
-2. Go to Cloud9 and open your IDE 
+1. Create another stack from C9-env-formation-template-with-bootstrap.yaml. Name your stack as C9EnvironmentStack, for example.
+2. Go to Cloud9 and open your IDE.
 
 #### Create CodeCommit repositories
 
-1. On CodeCommit, check you have a demobookstore-WebAssets repository with all code for the front-end. This repository was created for you when creating DemoBookStoreStack
+1. On CodeCommit, check you have a demobookstore-WebAssets repository with all code for the front-end. This repository was created for you when creating DemoBookStoreStack.
 
 2. Create a repository for the Books microservice 
 
-   - Create an empty demobookstore-BooksService repository on CodeCommit. You will populate it next
+   - Create an empty demobookstore-BooksService repository on CodeCommit. You will populate it next.
 
 3. Clone repositories in Cloud9
 
