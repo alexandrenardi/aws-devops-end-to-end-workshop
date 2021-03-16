@@ -6,7 +6,7 @@ Parameters:
   ExampleC9InstanceType:
     Description: Example Cloud9 instance type
     Type: String
-    Default: t3.small
+    Default: t2.micro
     AllowedValues:
       - t2.micro
       - t3.micro
