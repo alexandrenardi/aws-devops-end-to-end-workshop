@@ -120,6 +120,7 @@ EU (Frankfurt) |	eu-central-1
 
 1. In CloudFormation, choose **Create Stack** with New resources 
    - Under **Specify template**, select **Upload a template file** and look for DemoBookstoreBooksServiceTemplate.yml.  Select **Next**.
+     - **DO NOT** select DemoBookstoreBooksService**Update**Template.yml. If you do, it'll fail.
    - Name the stack (for example, DemoBooksServiceStack).
    - Set parameter ProjectName to the same value you choose previously. This guide assumes you choose the default value on both (demobookstore).
    - Create the stack.
