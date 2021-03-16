@@ -134,8 +134,8 @@ EU (Frankfurt) |	eu-central-1
 
 &nbsp;
 
-
 ***NOTE**: Up to now, you have exactly the same results you would if you have run the original sample, but creating two stacks. Now your application is running, consider you have two developers in charge of maintaining the application: one for the Books microservice; and the other for the front-end and the other microservices. You also have a Development Lead responsible for guarantee the developers have the same IDE, avoiding issues with packages' versions, as Python, for example. The next sessions will walk you through some of the tasks and challenges they'll face!*
+
 
 
 
@@ -150,41 +150,25 @@ EU (Frankfurt) |	eu-central-1
 #### Create CodeCommit repositories
 
 1. On CodeCommit, check you have a demobookstore-WebAssets repository with all code for the front-end. This repository was created for you when creating DemoBookStoreStack.
-
 2. Create a repository for the Books microservice 
-
    - Create an empty demobookstore-BooksService repository on CodeCommit. You will populate it next.
-
 3. Clone repositories in Cloud9
-
    - Repository demobookstore-WebAssets (front-end and services other than related to Books)
-
      - Copy repository URL on CodeCommit for demobookstore-WebAssets
-
      - In Cloud9 command prompt, run 
-
        ```
        git clone <paste here the demobookstore-WebAssets URL>
        ```
-
    - Repository demobookstore-BooksService (for Books microservice with lambda functions related to books)
-
      - Copy repository URL on CodeCommit for demobookstore-BooksService, that you created on step 2b
-
      - In Cloud9 command prompt, run 
-
        ```
        git clone <paste here the demobookstore-BooksService URL>
        ```
-
      - In Cloud9 environment tab on navigation, there will be one folder for each of these repositories. Select the folder demobookstore-BooksService and create a subfolder named src
-
      - Select AWS tab on navigation in Cloud9, find the lambda function demobookstore-GetBook, and import it under demobookstore-BooksService/src
-
      - Repeat previous step for demobookstore-ListBooks function
-
      - In the environment tab in the navigation, commit your code (insert a description and type Ctrl+Enter). Right click the menu on demobookstore-BooksService and push the changes to the repository (this can also be done by clicking 0â1á in the bottom-left corner)
-
      - Check your code is at CodeCommit repository
 
 #### Change code on front-end
