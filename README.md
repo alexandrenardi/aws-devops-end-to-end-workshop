@@ -91,6 +91,9 @@ The solution architecture is the same as the original.  The diagram below shows 
 
 To get AWS Bookstore Demo App up and running in your own AWS account, follow these steps (if you do not have an AWS account, please see [How do I create and activate a new Amazon Web Services account?](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)). You'll have to create two stacks, as we intend to update the Books microservice independently of the rest of the application - as if you have a development team responsible for the Books product (our microservice).
 
+#### Get the code you need
+Download all files in this repository to your local disk.
+
 #### Go to the Console
 
 1. Log into the [AWS console](https://console.aws.amazon.com/) if you are not already.  
