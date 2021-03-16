@@ -207,7 +207,7 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
 
 #### Create a new pipeline for automating Books microservice build and deploy
 
-1. Choose a name for your pipeline, as demobookstore-BooksService-Pipeline, for example
+1. Choose a name for your pipeline, as demobookstore-BooksService-Pipeline, for example. Leave all other options as default
 2. Create the Commit stage as:
    -  Action name = Source (or other you’d prefer)
    - Action provider = AWS CodeCommit
