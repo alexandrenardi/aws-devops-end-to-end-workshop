@@ -260,7 +260,7 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
    - Make a change in ListBooks function, including something in the log, as console.log(“I’m in ListBooks”)
    - Save, commit and push
    - Check if the pipeline run (all steps green)
-   - Open your lambda function in the Console and check if the source code was updated
+   - As the deployment package is larger than 3MB, due to node modules, you'll not be able to see the Lambda function code using AWS Console
    - Refresh the web application and navigate to the home page (log in if you’re not). ListBooks is called to fill the items in “Cookbooks” category on home page
    - In your lambda function, under Monitor, click the CloudWatch link and check if your message (“I’m in ListBooks”) is in the log. **You’ve just instrumented your lambda function!**
 
