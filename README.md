@@ -151,6 +151,7 @@ EU (Frankfurt) |	eu-central-1
 
 1. On CodeCommit, check you have a demobookstore-WebAssets repository with all code for the front-end. This repository was created for you when creating DemoBookStoreStack.
 2. Create a repository for the Books microservice 
+   
    - Create an empty demobookstore-BooksService repository on CodeCommit. You will populate it next.
 3. Clone repositories in Cloud9
    - Repository demobookstore-WebAssets (front-end and services other than related to Books)
@@ -193,7 +194,7 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
 
 #### Create a S3 bucket for build pipeline
 
-1. Name must be globally unique: demobookstore-books-service-pipeline-bucket-<YYYYMMDDHHMM>, for example. If it exists, try another name
+1. Name must be globally unique: demobookstore-books-service-pipeline-bucket-< YYYYMMDDHHMM >, for example. If it exists, try another name
 2. Uncheck “**Block all public access**” and check the “I acknowledge…” check box. Note: this is a demo environment. Carefully consider security concerns for production
 3. Leave all other options as default
 
@@ -224,13 +225,13 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
      - (New service role) Role name = demobookstore-BooksService-BuildProject-service-role
      - Timeout = 10 minutes
      - Environment variables:
-       - S3_BUCKET = demobookstore-books-service-pipeline-bucket-<YYYYMMDDHHMM>
+       - S3_BUCKET = demobookstore-books-service-pipeline-bucket-< YYYYMMDDHHMM >
        - APP_ID = demobookstore-BooksService-BuildProject
-       - ACCOUNT_ID = <your account id>
+       - ACCOUNT_ID  = < your account id >
        - PARTITION = aws
      - Logs
        - Check “S3 logs – optional” check box
-       - Bucket = demobookstore-books-service-pipeline-bucket-<YYYYMMDDHHMM>
+       - Bucket = demobookstore-books-service-pipeline-bucket-< YYYYMMDDHHMM >
        - Check the “Allow AWS CodeBuild to modify…” check box
      - Leave all other fields as they are and hit “Continue to CodePipeline”, to go back to CodePipeline creation
      - In IAM, attach policy “AdministratorAccess” to role demobookstore-BooksService-BuildProject-service-role
