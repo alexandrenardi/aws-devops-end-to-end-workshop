@@ -132,11 +132,11 @@ EU (Frankfurt) |	eu-central-1
    *Note: given that this is a demo application, we highly suggest that you do not use an email and password combination that you use for other purposes (such as an AWS account, email, or e-commerce site).*
 3. Once you provide your credentials, you will receive a verification code at the email address you provided. Upon entering this verification code, you will be signed into the application.
 
-&nbsp;
 
 ***NOTE**: Up to now, you have exactly the same results you would if you have run the original sample, but creating two stacks. Now your application is running, consider you have two developers in charge of maintaining the application: one for the Books microservice; and the other for the front-end and the other microservices. You also have a Development Lead responsible for guarantee the developers have the same IDE, avoiding issues with packages' versions, as Python, for example. The next sessions will walk you through some of the tasks and challenges they'll face!*
 
 
+&nbsp;
 
 
 ### Use Cloud9 environment to maintain your application
