@@ -114,7 +114,7 @@ EU (Frankfurt) |	eu-central-1
    - Name the stack (for example, DemoBookStoreStack)
    - Set parameter ProjectName = demobookstore (this is the default)
    - In the review page, check the “**I acknowledge…**” check box, and create the stack
-2. Once the CloudFormation deployment is complete, check the status of the build in the [CodePipeline](https://console.aws.amazon.com/codesuite/codepipeline/pipelines) console and ensure it has succeeded
+2. Once the CloudFormation deployment is complete (it could take around 25 minutes), check the status of the build in the [CodePipeline](https://console.aws.amazon.com/codesuite/codepipeline/pipelines) console and ensure it has succeeded
 
 #### Create the Books microservice
 
