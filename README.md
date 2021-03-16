@@ -182,7 +182,7 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
    - Make some code change. For example, change some fixed text, as in  src/modules/signup/Home.tsx, under renderLanding, you can change the heading from “Bookstore Demo” to “Bookstore FANTASTIC Demo”
    - Save, commit and push the code as you did previously
 2. Open CodePipeline and check demobookstore-Assets-Pipeline running. This pipeline was created for you when creating DemoBookStoreStack. It will take around 6 minutes to finish. Notice there isn’t a Deploy stage. The deployment is made on Build stage, as the deployment of a web application (front-end) is done by copying the files to the S3 bucket (take a look on it after the pipeline has finished – you’ll see an executable version of your application, not the source code, which is in CodeCommit repository)
-3. Test your web application by refreshing it from the browser (Ctrl+F5 on Firefox)
+3. Test your web application by refreshing it from the browser (Ctrl+F5 on Firefox). If you did the suggested change above, click Log out and then the "Bookstore" logo to go to the landing page, and check the title
 
 
 
