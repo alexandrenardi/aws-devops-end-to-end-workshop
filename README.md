@@ -143,7 +143,7 @@ EU (Frankfurt) |	eu-central-1
 
 #### Create an environment (IDE) for Cloud9
 
-1. Create another stack from C9-env-formation-template-with-bootstrap.yaml. Name your stack as C9EnvironmentStack, for example.
+1. Create another stack from C9EnvironmentTemplate.yml. Name your stack as C9EnvironmentStack, for example.
    - In the review page, check the “**I acknowledge…**” check box, and create the stack
 3. Go to Cloud9 and open your IDE.
 
