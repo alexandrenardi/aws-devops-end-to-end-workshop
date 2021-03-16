@@ -161,7 +161,7 @@ EU (Frankfurt) |	eu-central-1
        git clone <paste here the demobookstore-WebAssets URL>
        ```
    - Repository demobookstore-BooksService (for Books microservice with lambda functions related to books)
-     - Copy repository URL on CodeCommit for demobookstore-BooksService, that you created on step 2b
+     - Copy repository URL on CodeCommit for demobookstore-BooksService, that you created on step 2
      - In Cloud9 command prompt, run 
        ```
        git clone <paste here the demobookstore-BooksService URL>
