@@ -244,15 +244,19 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
    - Role name: demobookstore-CloudFormation-role
    - Advanced -> Parameter overrides = {"AppId":"demobookstore-BooksService", "ProjectName":"demobookstore"}
    - Create the pipeline and check if it runs and all steps are green after a while. Click the details link in the Deploy stage. You should see a change set with four changes (Books microservice objects)
- 5. Modify the Deploy stage to add an action to execute the change set:
-   - Action name = ExecuteChangeSet
-   - Action provider = AWS CloudFormation
-   - Input artifacts = <the same you choose in GenerateChangeSet -> Output>
-   - Action mode = Execute a change set
-   - Stack name = DemoBooksServiceStack (or another name you’ve chosen)
-   - Change set name = pipeline-changeset
-   - Leave all other fields as they are hit “Done”
-5. Test your microservice in Cloud9
+5. Modify the Deploy stage to add an action group to execute the change set:
+   - Edit Deploy action and set:
+      - Action name = GenerateChangeSet
+      - Output artifacts = GenerateChangeSetArtifacts (or another name you prefer)
+   - Add an action group as: 
+     - Action name = ExecuteChangeSet
+     - Action provider = AWS CloudFormation
+     - Input artifacts = <the same you choose in GenerateChangeSet -> Output artifacts>
+     - Action mode = Execute a change set
+     - Stack name = DemoBooksServiceStack (or another name you’ve chosen)
+     - Change set name = pipeline-changeset
+     - Leave all other fields as they are hit “Done”
+6. Test your microservice in Cloud9
    - Make a change in ListBooks function, including something in the log, as console.log(“I’m in ListBooks”)
    - Save, commit and push
    - Check if the pipeline run (all steps green)
