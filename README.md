@@ -213,11 +213,9 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
    - Source provider = AWS CodeCommit
    - Repository name = demobookstore-BooksService
    - Branch name = main (or master, depending on which one is available)
-   - * Output artifacts = SourceArtifacts (or other of your choice)
    - Leave the other options as they are
 3. Create the Build stage as:
    - Build provider = AWS CodeBuild
-   - * Input artifacts = <the same you choose in Commit -> Output artifacts>
    - Click on Create Project button to be redirected to create a build project
      - Project name = demobookstore-BooksService-BuildProject
      - Operating system = Amazon Linux 2
@@ -233,33 +231,27 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
      - Logs
        - Check “S3 logs – optional” check box
        - Bucket = demobookstore-books-service-pipeline-bucket-< YYYYMMDDHHMM >
-       - * Check the “Allow AWS CodeBuild to modify…” check box
      - Leave all other fields as they are and hit “Continue to CodePipeline”, to go back to CodePipeline creation
-     - In IAM, attach policy “AdministratorAccess” to role demobookstore-BooksService-BuildProject-service-role
-   - * Output artifacts = BuildArtifacts  (or other of your choice)
-4. Create the Deploy stage with two action groups:
-   - The first one to create a change set with changes
-     - * Action name = GenerateChangeSet
-     - Deploy provider = AWS CloudFormation
-     - * Input artifacts = <the same you choose in Build -> Output artifacts>
-     - Action mode = Create or replace a change set
-     - Stack name = DemoBooksServiceStack (or another name you’ve chosen)
-     - Change set name = pipeline-changeset
-     - Template -> Artifact name = BuildArtifact
-     - Template -> File name = template-export.yml
-     - Capabilities: select CAPABILITY_NAMED_IAM and CAPABILITY_AUTO_EXPAND
-     - Role name: demobookstore-CloudFormation-role
-     - Advanced -> Parameter overrides = {"AppId":"demobookstore-BooksService", "ProjectName":"demobookstore"}
-     - * Output artifacts = OutputArtifacts (or other of your choice)
-     - Create the pipeline and check if it runs and all steps are green after a while. Our next step will be to add another action to Deploy stage
-   - The second action group executes the change set:
-     - Action name = ExecuteChangeSet
-     - Action provider = AWS CloudFormation
-     - Input artifacts = <the same you choose in GenerateChangeSet -> Output>
-     - Action mode = Execute a change set
-     - Stack name = DemoBooksServiceStack (or another name you’ve chosen)
-     - Change set name = pipeline-changeset
-     - Leave all other fields as they are hit “Done”
+   - In IAM, attach policy “AdministratorAccess” to role demobookstore-BooksService-BuildProject-service-role
+4. Create the Deploy stage as:
+   - Deploy provider = AWS CloudFormation
+   - Action mode = Create or replace a change set
+   - Stack name = DemoBooksServiceStack (or another name you’ve chosen)
+   - Change set name = pipeline-changeset
+   - Template -> Artifact name = BuildArtifact
+   - Template -> File name = template-export.yml
+   - Capabilities: select CAPABILITY_NAMED_IAM and CAPABILITY_AUTO_EXPAND
+   - Role name: demobookstore-CloudFormation-role
+   - Advanced -> Parameter overrides = {"AppId":"demobookstore-BooksService", "ProjectName":"demobookstore"}
+   - Create the pipeline and check if it runs and all steps are green after a while. Click the details link in the Deploy stage. You should see a change set with four changes (Books microservice objects)
+ 5. Modify the Deploy stage to add an action to execute the change set:
+   - Action name = ExecuteChangeSet
+   - Action provider = AWS CloudFormation
+   - Input artifacts = <the same you choose in GenerateChangeSet -> Output>
+   - Action mode = Execute a change set
+   - Stack name = DemoBooksServiceStack (or another name you’ve chosen)
+   - Change set name = pipeline-changeset
+   - Leave all other fields as they are hit “Done”
 5. Test your microservice in Cloud9
    - Make a change in ListBooks function, including something in the log, as console.log(“I’m in ListBooks”)
    - Save, commit and push
