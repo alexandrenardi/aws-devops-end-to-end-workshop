@@ -5,13 +5,13 @@ Transform: AWS::Serverless-2016-10-31
 
 # Shared configuration for all resources, more in
 # https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
-Globals:
-  Function:
+#Globals:
+#  Function:
     # The PermissionsBoundary allows users to safely develop with their function's permissions constrained
     # to their current application. All the functions and roles in this application have to include it and
     # it has to be manually updated when you add resources to your application.
     # More information in https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html
-    PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${AppId}-${AWS::Region}-PermissionsBoundary'
+#    PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${AppId}-${AWS::Region}-PermissionsBoundary'
 
 Parameters:
   AppId:
