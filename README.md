@@ -145,7 +145,8 @@ EU (Frankfurt) |	eu-central-1
 
 1. Create another stack from C9EnvironmentTemplate.yml. Name your stack as C9EnvironmentStack, for example.
    - In the review page, check the “**I acknowledge…**” check box, and create the stack
-3. Go to Cloud9 and open your IDE.
+2. Go to Cloud9 and open your IDE.
+Note: the difference between this template and the original from [AWS Cloud9 Bootstrapping Example](https://github.com/aws-samples/aws-cloud9-bootstrapping-example) is the inclusion of some statements to update Python to 3.8.8 and maiking it the default version.
 
 #### Create CodeCommit repositories
 
@@ -169,7 +170,7 @@ EU (Frankfurt) |	eu-central-1
      - In Cloud9 environment tab on navigation, there will be one folder for each of these repositories. Select the folder demobookstore-BooksService and create a subfolder named src
      - Select AWS tab on navigation in Cloud9, find the lambda function demobookstore-GetBook, and import it under demobookstore-BooksService/src
      - Repeat previous step for demobookstore-ListBooks function
-     - In the environment tab in the navigation, commit your code (insert a description and type Ctrl+Enter). Right click the menu on demobookstore-BooksService and push the changes to the repository (this can also be done by clicking 0â1á in the bottom-left corner)
+     - In the environment tab in the navigation, commit your code (insert a description and type Ctrl+Enter). Right click the menu on demobookstore-BooksService and push the changes to the repository (this can also be done by clicking 0&#85951&#8593 in the bottom-left corner)
      - Check your code is at CodeCommit repository
 
 #### Change code on front-end
