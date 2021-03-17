@@ -268,7 +268,8 @@ Make a change in demobookstore-WebAssets and check if the pipeline running.
 
 ### Automate unit test for ListBooks lambda function
 
-1. Enable build to run unit tests
+1. Upload package.json, which sets jest as the framework for testing
+2. Enable build to run unit tests
    - In buildspec.yml, uncomment commands `- npm run test` and `- rm -rf ./__tests__`
 2. Unzip __tests__.zip in your local disk and upload __tests__ folder under demobookstore-BooksService
 3. Save, commit, and push
