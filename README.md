@@ -302,11 +302,13 @@ It's an alternative to Cloud9.
 To tear down your application and remove all resources associated with AWS Bookstore Demo App, follow these steps:
 
 1. Log into the [Amazon S3 Console](https://console.aws.amazon.com/s3) and  delete the buckets created for the demo app.  
-   - There should be two buckets created for AWS Bookstore Demo App.  The buckets will be titled "X" and "X-pipeline", where "X" is the name you specified in the CloudFormation wizard under the AssetsBucketName parameter.  
+   - There should be two buckets created for AWS Bookstore Demo App.  The buckets will be titled "X" and "X-pipeline", where "X" is the name you specified in the CloudFormation wizard under the AssetsBucketName parameter.
+   - Also delete the S3 bucket for build pipeline: demobookstore-books-service-pipeline-bucket-< YYYYMMDDHHMM >.  
    - *Note: Please be **very careful** to only delete the buckets associated with this app that you are absolutely sure you want to delete.*
 2. Log into the AWS CloudFormation Console and find the stacks you created for the demo app.
 3. Delete the DemoBooksServiceStack stack.
 4. Delete the DemoBookStoreStack stack. This removal could take more than 90 minutes, and fail. If this happen, delete it again and you'll get a message with some resources you should manually delete. Delete the VPC: it'll ask you to delete two network interfaces. Delete them and then the VPC. Continue deleting the stack. It should complete in few seconds.
+5. Delete the roles you created: demobookstore-CloudFormation-role and demobookstore-BooksService-BuildProject-service-role.
 
 *Remember to shut down/remove all related resources once you are finished to avoid ongoing charges to your AWS account.*
 
